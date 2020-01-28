@@ -1,0 +1,9 @@
+.canvas-holder {
+	width: 600px;
+	height: 600px;
+}
+
+#webgl-canvas {
+	width: 100%;
+	height: 100%;
+}

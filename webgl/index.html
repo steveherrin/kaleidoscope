@@ -1,0 +1,28 @@
+<html>
+  <head>
+    <link rel="stylesheet" type="text/css" href="style.css">
+  </head>
+  <body>
+    <div class="canvas-holder">
+      <canvas id="webgl-canvas"></canvas>
+      <script  id="vertex-shader" type="notjs">
+
+        attribute vec4 a_position;
+
+        void main() {
+          gl_Position = a_position;
+        }
+      </script>
+      <script  id="fragment-shader" type="notjs">
+
+        precision mediump float;
+
+        void main() {
+          gl_FragColor = vec4(0.5, 1, 0.5, 1);
+        }
+
+      </script>
+      <script src="webgl.js"></script>
+    </div>
+  </body>
+</html>
