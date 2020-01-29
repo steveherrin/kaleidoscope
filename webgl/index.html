@@ -7,18 +7,29 @@
       <canvas id="webgl-canvas"></canvas>
       <script  id="vertex-shader" type="notjs">
 
-        attribute vec4 a_position;
+        attribute vec2 a_drawBoxCoord;
+        attribute vec2 a_textureCoord;
+
+        uniform vec2 u_resolution;
+
+        varying vec2 v_textureCoord;
 
         void main() {
-          gl_Position = a_position;
+          vec2 clipSpace = 2.0 * (a_drawBoxCoord / u_resolution) - 1.0;
+          gl_Position = vec4(clipSpace * vec2(1, -1), 0, 1);
+          v_textureCoord = a_textureCoord;
         }
       </script>
       <script  id="fragment-shader" type="notjs">
 
         precision mediump float;
 
+        uniform sampler2D u_image;
+        
+        varying vec2 v_textureCoord;
+
         void main() {
-          gl_FragColor = vec4(0.5, 1, 0.5, 1);
+          gl_FragColor = texture2D(u_image, v_textureCoord);
         }
 
       </script>
